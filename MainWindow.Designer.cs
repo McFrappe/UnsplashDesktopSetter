@@ -29,28 +29,24 @@
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.showAPictureButton = new System.Windows.Forms.Button();
-            this.clearThePictureButton = new System.Windows.Forms.Button();
-            this.setTheBackgroundColorButton = new System.Windows.Forms.Button();
-            this.closeButton = new System.Windows.Forms.Button();
+            this.SetWallpaperButton = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 85F));
-            this.tableLayoutPanel1.Controls.Add(this.checkBox1, 0, 1);
+            this.tableLayoutPanel1.ColumnCount = 1;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.pictureBox1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 1, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -60,79 +56,37 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 450);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.tableLayoutPanel1.SetColumnSpan(this.pictureBox1, 2);
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Location = new System.Drawing.Point(3, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(794, 399);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(3, 408);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(60, 17);
-            this.checkBox1.TabIndex = 1;
-            this.checkBox1.Text = "Stretch";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Controls.Add(this.showAPictureButton);
-            this.flowLayoutPanel1.Controls.Add(this.clearThePictureButton);
-            this.flowLayoutPanel1.Controls.Add(this.setTheBackgroundColorButton);
-            this.flowLayoutPanel1.Controls.Add(this.closeButton);
+            this.flowLayoutPanel1.Controls.Add(this.SetWallpaperButton);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(123, 408);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 408);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(674, 39);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(794, 39);
             this.flowLayoutPanel1.TabIndex = 2;
             // 
             // showAPictureButton
             // 
             this.showAPictureButton.AutoSize = true;
-            this.showAPictureButton.Location = new System.Drawing.Point(583, 3);
+            this.showAPictureButton.Location = new System.Drawing.Point(3, 3);
             this.showAPictureButton.Name = "showAPictureButton";
             this.showAPictureButton.Size = new System.Drawing.Size(88, 23);
             this.showAPictureButton.TabIndex = 0;
             this.showAPictureButton.Text = "Show a picture";
             this.showAPictureButton.UseVisualStyleBackColor = true;
+            this.showAPictureButton.Click += new System.EventHandler(this.ShowAPictureButton_Click);
             // 
-            // clearThePictureButton
+            // SetWallpaperButton
             // 
-            this.clearThePictureButton.AutoSize = true;
-            this.clearThePictureButton.Location = new System.Drawing.Point(483, 3);
-            this.clearThePictureButton.Name = "clearThePictureButton";
-            this.clearThePictureButton.Size = new System.Drawing.Size(94, 23);
-            this.clearThePictureButton.TabIndex = 1;
-            this.clearThePictureButton.Text = "Clear the picture";
-            this.clearThePictureButton.UseVisualStyleBackColor = true;
-            // 
-            // setTheBackgroundColorButton
-            // 
-            this.setTheBackgroundColorButton.AutoSize = true;
-            this.setTheBackgroundColorButton.Location = new System.Drawing.Point(337, 3);
-            this.setTheBackgroundColorButton.Name = "setTheBackgroundColorButton";
-            this.setTheBackgroundColorButton.Size = new System.Drawing.Size(140, 23);
-            this.setTheBackgroundColorButton.TabIndex = 2;
-            this.setTheBackgroundColorButton.Text = " Set the background color";
-            this.setTheBackgroundColorButton.UseVisualStyleBackColor = true;
-            // 
-            // closeButton
-            // 
-            this.closeButton.AutoSize = true;
-            this.closeButton.Location = new System.Drawing.Point(256, 3);
-            this.closeButton.Name = "closeButton";
-            this.closeButton.Size = new System.Drawing.Size(75, 23);
-            this.closeButton.TabIndex = 3;
-            this.closeButton.Text = "Close";
-            this.closeButton.UseVisualStyleBackColor = true;
+            this.SetWallpaperButton.AutoSize = true;
+            this.SetWallpaperButton.Location = new System.Drawing.Point(97, 3);
+            this.SetWallpaperButton.Name = "SetWallpaperButton";
+            this.SetWallpaperButton.Size = new System.Drawing.Size(94, 23);
+            this.SetWallpaperButton.TabIndex = 1;
+            this.SetWallpaperButton.Text = "Set Wallpaper";
+            this.SetWallpaperButton.UseVisualStyleBackColor = true;
+            this.SetWallpaperButton.Click += new System.EventHandler(this.SetWallpaperButton_Click);
             // 
             // openFileDialog1
             // 
@@ -140,6 +94,15 @@
             this.openFileDialog1.Filter = "JPEG Files (*.jpg)|*.jpg|PNG Files (*.png)|*.png|BMP Files (*.bmp)|*.bmp|All file" +
     "s (*.*)|*.*";
             this.openFileDialog1.Title = "Select a picture file";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox1.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(794, 399);
+            this.pictureBox1.TabIndex = 3;
+            this.pictureBox1.TabStop = false;
             // 
             // MainWindow
             // 
@@ -150,10 +113,9 @@
             this.Name = "MainWindow";
             this.Text = "MainWindow";
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -161,15 +123,12 @@
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.Button showAPictureButton;
-        private System.Windows.Forms.Button clearThePictureButton;
-        private System.Windows.Forms.Button setTheBackgroundColorButton;
-        private System.Windows.Forms.Button closeButton;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.ColorDialog colorDialog1;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.Button showAPictureButton;
+        private System.Windows.Forms.Button SetWallpaperButton;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 
