@@ -36,7 +36,6 @@
             this.WallpaperStyleSelector = new System.Windows.Forms.ComboBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.tableLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -53,8 +52,8 @@
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 94F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(784, 561);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
@@ -65,9 +64,9 @@
             this.flowLayoutPanel1.Controls.Add(this.label1);
             this.flowLayoutPanel1.Controls.Add(this.WallpaperStyleSelector);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 507);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 530);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(778, 51);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(778, 28);
             this.flowLayoutPanel1.TabIndex = 2;
             // 
             // showAPictureButton
@@ -104,6 +103,7 @@
             // 
             // WallpaperStyleSelector
             // 
+            this.WallpaperStyleSelector.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.WallpaperStyleSelector.FormattingEnabled = true;
             this.WallpaperStyleSelector.Items.AddRange(new object[] {
             "Center",
@@ -115,15 +115,13 @@
             this.WallpaperStyleSelector.Name = "WallpaperStyleSelector";
             this.WallpaperStyleSelector.Size = new System.Drawing.Size(121, 21);
             this.WallpaperStyleSelector.TabIndex = 2;
-            this.WallpaperStyleSelector.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.WallpaperStyleSelector.SelectedIndex = 0;           
             // 
             // pictureBox1
             // 
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox1.Location = new System.Drawing.Point(3, 3);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(778, 498);
+            this.pictureBox1.Size = new System.Drawing.Size(778, 521);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
@@ -131,7 +129,7 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            this.openFileDialog1.Filter = "JPEG Files (*.jpg)|*.jpg|PNG Files (*.png)|*.png|BMP Files (*.bmp)|*.bmp|All file" +
+            this.openFileDialog1.Filter = "JPEG/PNG/BMP Files (*.jpg, *.png, *.bmp)|*.jpg;*.png;*.bmp|All file" +
     "s (*.*)|*.*";
             this.openFileDialog1.Title = "Select a picture file";
             // 
@@ -158,7 +156,6 @@
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.ColorDialog colorDialog1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Button showAPictureButton;
         private System.Windows.Forms.Button SetWallpaperButton;
