@@ -15,9 +15,9 @@ namespace UnsplashDesktopSetter
     public partial class MainWindow : Form
     {
         private IConfigurationRoot config;
-        private string tempPath = Path.Combine(Path.GetTempPath() + "UWSFetchedWallpaper.jpg");
+        private readonly string tempPath = Path.Combine(Path.GetTempPath() + "UWSFetchedWallpaper.jpg");
 
-        private string api_url = "https://api.unsplash.com/";
+        private readonly string api_url = "https://api.unsplash.com/";
         private string key;
         private string url; 
 
@@ -53,7 +53,7 @@ namespace UnsplashDesktopSetter
             key = config.GetSection("APIConfig:AccessKey").Value;
             url = api_url + "photos/random?query=wallpaper&count=1&" + "client_id=" + key;
 
-            pictureBox1.Image = null;
+            PictureBox.Image = null;
         }
 
         private async void FetchNewPictureButtonClick(object sender, EventArgs e)
@@ -74,11 +74,11 @@ namespace UnsplashDesktopSetter
                 string responseBody = await response.Content.ReadAsStringAsync();
                 var content = JsonConvert.DeserializeObject<List<ImageContent>>(responseBody);
 
-                pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-                pictureBox1.Load(content[0].urls.SelectedResolution(ResolutionSelector.SelectedItem.ToString()));
+                PictureBox.SizeMode = PictureBoxSizeMode.Zoom;
+                PictureBox.Load(content[0].urls.SelectedResolution(ResolutionSelector.SelectedItem.ToString()));
             }
 
-            pictureBox1.Image.Save(Path.Combine(Path.GetTempPath() + "UWSFetchedWallpaper.jpg"));
+            PictureBox.Image.Save(Path.Combine(Path.GetTempPath() + "UWSFetchedWallpaper.jpg"));
         }
 
         private void SetRegistryValuesForWallpaperStyle()

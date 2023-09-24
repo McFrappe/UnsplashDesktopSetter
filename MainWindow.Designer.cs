@@ -28,44 +28,48 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.TableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.fetchNewPictureButton = new System.Windows.Forms.Button();
+            this.FetchNewPictureButton = new System.Windows.Forms.Button();
             this.SetWallpaperButton = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.ImageFitLabel = new System.Windows.Forms.Label();
             this.WallpaperStyleSelector = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.ResolutionLabel = new System.Windows.Forms.Label();
             this.ResolutionSelector = new System.Windows.Forms.ComboBox();
-            this.tableLayoutPanel1.SuspendLayout();
+            this.PictureBox = new System.Windows.Forms.PictureBox();
+            this.ImageDetailsLabel = new System.Windows.Forms.Label();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.TableLayoutPanel.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBox)).BeginInit();
             this.SuspendLayout();
             // 
-            // tableLayoutPanel1
+            // TableLayoutPanel
             // 
-            this.tableLayoutPanel1.AutoSize = true;
-            this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.pictureBox1, 0, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 94F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(784, 561);
-            this.tableLayoutPanel1.TabIndex = 0;
+            this.TableLayoutPanel.AutoSize = true;
+            this.TableLayoutPanel.ColumnCount = 2;
+            this.TableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
+            this.TableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.TableLayoutPanel.Controls.Add(this.flowLayoutPanel1, 0, 1);
+            this.TableLayoutPanel.Controls.Add(this.PictureBox, 0, 0);
+            this.TableLayoutPanel.Controls.Add(this.ImageDetailsLabel, 1, 0);
+            this.TableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TableLayoutPanel.Location = new System.Drawing.Point(0, 0);
+            this.TableLayoutPanel.Name = "TableLayoutPanel";
+            this.TableLayoutPanel.RowCount = 2;
+            this.TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 94F));
+            this.TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6F));
+            this.TableLayoutPanel.Size = new System.Drawing.Size(784, 561);
+            this.TableLayoutPanel.TabIndex = 0;
             // 
             // flowLayoutPanel1
             // 
-            this.flowLayoutPanel1.Controls.Add(this.fetchNewPictureButton);
+            this.TableLayoutPanel.SetColumnSpan(this.flowLayoutPanel1, 2);
+            this.flowLayoutPanel1.Controls.Add(this.FetchNewPictureButton);
             this.flowLayoutPanel1.Controls.Add(this.SetWallpaperButton);
-            this.flowLayoutPanel1.Controls.Add(this.label1);
+            this.flowLayoutPanel1.Controls.Add(this.ImageFitLabel);
             this.flowLayoutPanel1.Controls.Add(this.WallpaperStyleSelector);
-            this.flowLayoutPanel1.Controls.Add(this.label2);
+            this.flowLayoutPanel1.Controls.Add(this.ResolutionLabel);
             this.flowLayoutPanel1.Controls.Add(this.ResolutionSelector);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 530);
@@ -73,16 +77,16 @@
             this.flowLayoutPanel1.Size = new System.Drawing.Size(778, 28);
             this.flowLayoutPanel1.TabIndex = 2;
             // 
-            // fetchNewPictureButton
+            // FetchNewPictureButton
             // 
-            this.fetchNewPictureButton.AutoSize = true;
-            this.fetchNewPictureButton.Location = new System.Drawing.Point(3, 3);
-            this.fetchNewPictureButton.Name = "fetchNewPictureButton";
-            this.fetchNewPictureButton.Size = new System.Drawing.Size(105, 23);
-            this.fetchNewPictureButton.TabIndex = 0;
-            this.fetchNewPictureButton.Text = "Fetch New Picutre";
-            this.fetchNewPictureButton.UseVisualStyleBackColor = true;
-            this.fetchNewPictureButton.Click += new System.EventHandler(this.FetchNewPictureButtonClick);
+            this.FetchNewPictureButton.AutoSize = true;
+            this.FetchNewPictureButton.Location = new System.Drawing.Point(3, 3);
+            this.FetchNewPictureButton.Name = "FetchNewPictureButton";
+            this.FetchNewPictureButton.Size = new System.Drawing.Size(105, 23);
+            this.FetchNewPictureButton.TabIndex = 0;
+            this.FetchNewPictureButton.Text = "Fetch New Picutre";
+            this.FetchNewPictureButton.UseVisualStyleBackColor = true;
+            this.FetchNewPictureButton.Click += new System.EventHandler(this.FetchNewPictureButtonClick);
             // 
             // SetWallpaperButton
             // 
@@ -95,15 +99,15 @@
             this.SetWallpaperButton.UseVisualStyleBackColor = true;
             this.SetWallpaperButton.Click += new System.EventHandler(this.SetWallpaperButtonClick);
             // 
-            // label1
+            // ImageFitLabel
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(214, 8);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(132, 13);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Choose a fit for your image";
+            this.ImageFitLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.ImageFitLabel.AutoSize = true;
+            this.ImageFitLabel.Location = new System.Drawing.Point(214, 8);
+            this.ImageFitLabel.Name = "ImageFitLabel";
+            this.ImageFitLabel.Size = new System.Drawing.Size(132, 13);
+            this.ImageFitLabel.TabIndex = 3;
+            this.ImageFitLabel.Text = "Choose a fit for your image";
             // 
             // WallpaperStyleSelector
             // 
@@ -119,33 +123,17 @@
             this.WallpaperStyleSelector.Name = "WallpaperStyleSelector";
             this.WallpaperStyleSelector.Size = new System.Drawing.Size(121, 21);
             this.WallpaperStyleSelector.TabIndex = 2;
-            this.WallpaperStyleSelector.SelectedIndex = 0;
+            this.WallpaperStyleSelector.SelectedIndex = 4;
             // 
-            // label2
+            // ResolutionLabel
             // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(479, 8);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(130, 13);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Choose resolution to fetch";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Location = new System.Drawing.Point(3, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(778, 521);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 3;
-            this.pictureBox1.TabStop = false;
-            // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.FileName = "openFileDialog1";
-            this.openFileDialog1.Filter = "JPEG/PNG/BMP Files (*.jpg, *.png, *.bmp)|*.jpg;*.png;*.bmp|All files (*.*)|*.*";
-            this.openFileDialog1.Title = "Select a picture file";
+            this.ResolutionLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.ResolutionLabel.AutoSize = true;
+            this.ResolutionLabel.Location = new System.Drawing.Point(479, 8);
+            this.ResolutionLabel.Name = "ResolutionLabel";
+            this.ResolutionLabel.Size = new System.Drawing.Size(130, 13);
+            this.ResolutionLabel.TabIndex = 4;
+            this.ResolutionLabel.Text = "Choose resolution to fetch";
             // 
             // ResolutionSelector
             // 
@@ -162,7 +150,33 @@
             this.ResolutionSelector.Name = "ResolutionSelector";
             this.ResolutionSelector.Size = new System.Drawing.Size(121, 21);
             this.ResolutionSelector.TabIndex = 5;
-            this.ResolutionSelector.SelectedIndex = 0;
+            this.ResolutionSelector.SelectedIndex = 2;
+            // 
+            // PictureBox
+            // 
+            this.PictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PictureBox.Location = new System.Drawing.Point(3, 3);
+            this.PictureBox.Name = "PictureBox";
+            this.PictureBox.Size = new System.Drawing.Size(542, 521);
+            this.PictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.PictureBox.TabIndex = 3;
+            this.PictureBox.TabStop = false;
+            // 
+            // ImageDetailsLabel
+            // 
+            this.ImageDetailsLabel.AutoSize = true;
+            this.ImageDetailsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ImageDetailsLabel.Location = new System.Drawing.Point(551, 0);
+            this.ImageDetailsLabel.Name = "ImageDetailsLabel";
+            this.ImageDetailsLabel.Size = new System.Drawing.Size(107, 18);
+            this.ImageDetailsLabel.TabIndex = 4;
+            this.ImageDetailsLabel.Text = "Image details";
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            this.openFileDialog1.Filter = "JPEG/PNG/BMP Files (*.jpg, *.png, *.bmp)|*.jpg;*.png;*.bmp|All files (*.*)|*.*";
+            this.openFileDialog1.Title = "Select a picture file";
             // 
             // MainWindow
             // 
@@ -172,15 +186,16 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(784, 561);
-            this.Controls.Add(this.tableLayoutPanel1);
+            this.Controls.Add(this.TableLayoutPanel);
             this.Name = "MainWindow";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Unsplash Wallpaper Setter";
-            this.tableLayoutPanel1.ResumeLayout(false);
+            this.TableLayoutPanel.ResumeLayout(false);
+            this.TableLayoutPanel.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -188,16 +203,17 @@
 
         #endregion
 
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TableLayoutPanel TableLayoutPanel;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.Button fetchNewPictureButton;
+        private System.Windows.Forms.Button FetchNewPictureButton;
         private System.Windows.Forms.Button SetWallpaperButton;
         private System.Windows.Forms.ComboBox WallpaperStyleSelector;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label ImageFitLabel;
+        private System.Windows.Forms.PictureBox PictureBox;
+        private System.Windows.Forms.Label ResolutionLabel;
         private System.Windows.Forms.ComboBox ResolutionSelector;
+        private System.Windows.Forms.Label ImageDetailsLabel;
     }
 }
 
