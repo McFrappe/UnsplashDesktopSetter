@@ -78,7 +78,7 @@
             this.showAPictureButton.TabIndex = 0;
             this.showAPictureButton.Text = "Show a picture";
             this.showAPictureButton.UseVisualStyleBackColor = true;
-            this.showAPictureButton.Click += new System.EventHandler(this.ShowAPictureButton_Click);
+            this.showAPictureButton.Click += new System.EventHandler(this.ShowAPictureButtonClick);
             // 
             // SetWallpaperButton
             // 
@@ -89,7 +89,7 @@
             this.SetWallpaperButton.TabIndex = 1;
             this.SetWallpaperButton.Text = "Set Wallpaper";
             this.SetWallpaperButton.UseVisualStyleBackColor = true;
-            this.SetWallpaperButton.Click += new System.EventHandler(this.SetWallpaperButton_Click);
+            this.SetWallpaperButton.Click += new System.EventHandler(this.SetWallpaperButtonClick);
             // 
             // label1
             // 
