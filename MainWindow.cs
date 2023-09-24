@@ -2,6 +2,7 @@
 using Microsoft.Win32;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
 using System.Runtime.InteropServices;
@@ -13,11 +14,13 @@ namespace UnsplashDesktopSetter
     // TODO check how to prevent from sending api keys to the cloud
     public partial class MainWindow : Form
     {
-        private HttpClient client = new HttpClient();
         private IConfigurationRoot config;
         private string tempPath = Path.Combine(Path.GetTempPath() + "UWSFetchedWallpaper.jpg");
 
         private string api_url = "https://api.unsplash.com/";
+        private string key;
+        private string url; 
+
         private const int SPI_SETDESKWALLPAPER = 0x14;
         private const int SPIF_UPDATEINIFILE = 0x1;
         private const int SPIF_SENDWININICHANGE = 0x02;
@@ -47,30 +50,34 @@ namespace UnsplashDesktopSetter
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .Build();
+            key = config.GetSection("APIConfig:AccessKey").Value;
+            url = api_url + "photos/random?query=wallpaper&count=1&" + "client_id=" + key;
 
             pictureBox1.Image = null;
         }
 
         private async void FetchNewPictureButtonClick(object sender, EventArgs e)
         {
-            string key = config.GetSection("APIConfig:AccessKey").Value;
-            string url = api_url + "photos/random/" + "?client_id=" + key;
-            HttpResponseMessage response;
-            try
+            using (var client = new HttpClient())
             {
-                response = await client.GetAsync(url);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.ToString());
+                HttpResponseMessage response;
+                try
+                {
+                    response = await client.GetAsync(url);
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.ToString());
+                }
+
+                response.EnsureSuccessStatusCode();
+                string responseBody = await response.Content.ReadAsStringAsync();
+                var content = JsonConvert.DeserializeObject<List<ImageContent>>(responseBody);
+
+                pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+                pictureBox1.Load(content[0].urls.SelectedResolution(ResolutionSelector.SelectedItem.ToString()));
             }
 
-            response.EnsureSuccessStatusCode();
-            string responseBody = await response.Content.ReadAsStringAsync();
-            var content = JsonConvert.DeserializeObject<ImageContent>(responseBody);
-
-            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox1.Load(content.urls.SelectedResolution(ResolutionSelector.SelectedItem.ToString()));
             pictureBox1.Image.Save(Path.Combine(Path.GetTempPath() + "UWSFetchedWallpaper.jpg"));
         }
 
