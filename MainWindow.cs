@@ -1,14 +1,11 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Win32;
-
 using Newtonsoft.Json;
-
 using System;
 using System.IO;
-using System.Drawing;
 using System.Net.Http;
-using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using System.Windows.Forms;
 
 namespace UnsplashDesktopSetter
 {
@@ -18,6 +15,7 @@ namespace UnsplashDesktopSetter
     {
         private HttpClient client = new HttpClient();
         private IConfigurationRoot config;
+        private string tempPath = Path.Combine(Path.GetTempPath() + "UWSFetchedWallpaper.jpg");
 
         private string api_url = "https://api.unsplash.com/";
         private const int SPI_SETDESKWALLPAPER = 0x14;
@@ -53,22 +51,27 @@ namespace UnsplashDesktopSetter
             pictureBox1.Image = null;
         }
 
-        private async void ShowAPictureButtonClick(object sender, EventArgs e)
+        private async void FetchNewPictureButtonClick(object sender, EventArgs e)
         {
             string key = config.GetSection("APIConfig:AccessKey").Value;
             string url = api_url + "photos/random/" + "?client_id=" + key;
-            HttpResponseMessage response = await client.GetAsync(url);
+            HttpResponseMessage response;
+            try
+            {
+                response = await client.GetAsync(url);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
+
             response.EnsureSuccessStatusCode();
             string responseBody = await response.Content.ReadAsStringAsync();
-            Console.WriteLine(responseBody);
-
             var content = JsonConvert.DeserializeObject<ImageContent>(responseBody);
 
-            pictureBox1.Load(content.urls.full);
-            Bitmap bitmapImage = (Bitmap)pictureBox1.Image;
-            bitmapImage.Save(Path.Combine(Path.GetTempPath() + "UWSFetchedWallpaper.jpg"));
-
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.Load(content.urls.SelectedResolution(ResolutionSelector.SelectedItem.ToString()));
+            pictureBox1.Image.Save(Path.Combine(Path.GetTempPath() + "UWSFetchedWallpaper.jpg"));
         }
 
         private void SetRegistryValuesForWallpaperStyle()
@@ -85,7 +88,7 @@ namespace UnsplashDesktopSetter
             {
                 key.SetValue(@"WallpaperStyle", 6.ToString());
                 key.SetValue(@"TileWallpaper", 0.ToString());
-            } 
+            }
             else if (style == WallpaperStyle.Span)
             {
                 key.SetValue(@"WallpaperStyle", 22.ToString());
@@ -108,32 +111,42 @@ namespace UnsplashDesktopSetter
             }
         }
 
-        public static int SetDesktopWallpaper()
+        private void SetWallpaperButtonClick(object sender, EventArgs e)
         {
-            string tempPath = Path.Combine(Path.GetTempPath() + "UWSFetchedWallpaper.jpg");
+            if (!File.Exists(tempPath))
+            {
+                Console.WriteLine("Could not set wallpaper, no wallpaper fetched from Unsplash.");
+                return;
+            }
 
-            return SystemParametersInfo(
+            if (WallpaperStyleSelector.SelectedIndex < 0)
+            {
+                Console.WriteLine("Could not set wallpaper; Select a fit for the wallpaper.");
+                return;
+            }
+
+            try
+            {
+                SetRegistryValuesForWallpaperStyle();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
+
+            int res = SystemParametersInfo(
                 SPI_SETDESKWALLPAPER,
                 0,
                 tempPath,
                 SPIF_UPDATEINIFILE | SPIF_SENDWININICHANGE);
-        }
 
-        private void SetWallpaperButtonClick(object sender, EventArgs e)
-        {
-            // TODO: handle if image not in tempPath
-
-            if (WallpaperStyleSelector.SelectedIndex < 0) return;
-
-            SetRegistryValuesForWallpaperStyle();
-            if (SetDesktopWallpaper() != 0)
-            {
-                Console.WriteLine("Wallpaper set successfully.");
-            }
-            else
+            if (res == 0)
             {
                 Console.WriteLine("Failed to set wallpaper.");
+                return;
             }
+
+            Console.WriteLine("Wallpaper set successfully.");
         }
     }
 }
