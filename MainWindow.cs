@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Win32;
+﻿using Microsoft.Win32;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -10,21 +9,12 @@ using System.Windows.Forms;
 
 namespace UnsplashDesktopSetter
 {
-    // TODO refactor
-    // TODO check how to prevent from sending api keys to the cloud
     public partial class MainWindow : Form
     {
-        private IConfigurationRoot config;
         private readonly string tempPath = Path.Combine(Path.GetTempPath() + "UWSFetchedWallpaper.jpg");
-
-        private readonly string api_url = "https://api.unsplash.com/";
-        private string key;
-        private string url; 
-
         private const int SPI_SETDESKWALLPAPER = 0x14;
         private const int SPIF_UPDATEINIFILE = 0x1;
         private const int SPIF_SENDWININICHANGE = 0x02;
-
 
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
         private static extern int SystemParametersInfo(
@@ -45,14 +35,6 @@ namespace UnsplashDesktopSetter
         public MainWindow()
         {
             InitializeComponent();
-
-            config = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                .Build();
-            key = config.GetSection("APIConfig:AccessKey").Value;
-            url = api_url + "photos/random?query=wallpaper&count=1&" + "client_id=" + key;
-
             PictureBox.Image = null;
         }
 
@@ -63,7 +45,7 @@ namespace UnsplashDesktopSetter
                 HttpResponseMessage response;
                 try
                 {
-                    response = await client.GetAsync(url);
+                    response = await client.GetAsync(Program.url);
                 }
                 catch (Exception ex)
                 {
