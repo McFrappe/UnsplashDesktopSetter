@@ -13,11 +13,27 @@ namespace UnsplashDesktopSetter
         public static readonly string verificationEndpoint = "stats/month";
         public static readonly string wallpaperQueryEndpoint = "photos/random?query=wallpaper&count=1&";
         
-        public static string url; 
+        public static string url;
+        public static string apiAccessKey = null;
 
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
+        private static void SetupProcess()
+        {
+            apiAccessKey = Environment.GetEnvironmentVariable("UWS_API_KEY", EnvironmentVariableTarget.User);
+            if (apiAccessKey != null)
+            {
+                Console.WriteLine("API Access key was found. Skipping setup process.");
+                return;
+            }
+
+            var setupWindow = new SetupWindow();
+            while (!setupWindow.submissionWasCorrect)
+            {
+                Application.Run(setupWindow);
+            }
+
+            Console.WriteLine($"API Access key registered to {Environment.UserName} (USER) environment variables.");
+        }
+
         [STAThread]
         static void Main()
         {
@@ -30,11 +46,8 @@ namespace UnsplashDesktopSetter
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            var setupWindow = new SetupWindow();
-            while (!setupWindow.submissionWasCorrect)
-            {
-                Application.Run(setupWindow);
-            }
+            
+            SetupProcess();
             Application.Run(new MainWindow());
         }
     }

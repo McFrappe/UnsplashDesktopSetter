@@ -1,7 +1,6 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Net.Http;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace UnsplashDesktopSetter
@@ -21,16 +20,18 @@ namespace UnsplashDesktopSetter
             {
                 var response = await client.GetAsync(
                     Program.apiUrl +
-                    Program.verificationEndpoint + "?client_id=" +
+                    Program.verificationEndpoint + 
+                    "?client_id=" +
                     APIKeyInputTextBox.Text);
 
                 if (!response.IsSuccessStatusCode)
                 {
-                    IncorrectAPIKey.Visible = true; 
+                    IncorrectAPIKey.Visible = true;
                     System.Media.SystemSounds.Hand.Play();
                     return;
                 }
 
+                Environment.SetEnvironmentVariable("UWS_API_KEY", APIKeyInputTextBox.Text, EnvironmentVariableTarget.User);
                 submissionWasCorrect = true;
                 Dispose();
             }

@@ -35,7 +35,6 @@ namespace UnsplashDesktopSetter
         public MainWindow()
         {
             InitializeComponent();
-            PictureBox.Image = null;
         }
 
         private async void FetchNewPictureButtonClick(object sender, EventArgs e)
@@ -45,14 +44,23 @@ namespace UnsplashDesktopSetter
                 HttpResponseMessage response;
                 try
                 {
-                    response = await client.GetAsync(Program.url);
+                    response = await client.GetAsync(
+                        Program.apiUrl +
+                        Program.wallpaperQueryEndpoint +
+                        "client_id=" +
+                        Program.apiAccessKey);
                 }
                 catch (Exception ex)
                 {
                     throw new Exception(ex.ToString());
                 }
 
-                response.EnsureSuccessStatusCode();
+                if (!response.IsSuccessStatusCode)
+                {
+                    Console.WriteLine("Failed to fetch from API, reason:\n" + response.StatusCode.ToString());
+                    return;
+                }
+
                 string responseBody = await response.Content.ReadAsStringAsync();
                 var content = JsonConvert.DeserializeObject<List<ImageContent>>(responseBody);
 
