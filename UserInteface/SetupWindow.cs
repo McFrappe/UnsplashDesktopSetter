@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Net.Http;
-using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace UnsplashDesktopSetter
@@ -20,7 +19,7 @@ namespace UnsplashDesktopSetter
             {
                 var response = await client.GetAsync(
                     Program.apiUrl +
-                    Program.verificationEndpoint + 
+                    Program.verificationEndpoint +
                     "?client_id=" +
                     APIKeyInputTextBox.Text);
 

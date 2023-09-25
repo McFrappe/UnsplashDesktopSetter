@@ -12,7 +12,7 @@ namespace UnsplashDesktopSetter
         public static readonly string apiUrl = "https://api.unsplash.com/";
         public static readonly string verificationEndpoint = "stats/month";
         public static readonly string wallpaperQueryEndpoint = "photos/random?query=wallpaper&count=1&";
-        
+
         public static string url;
         public static string apiAccessKey = null;
 
@@ -46,7 +46,7 @@ namespace UnsplashDesktopSetter
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            
+
             SetupProcess();
             Application.Run(new MainWindow());
         }
