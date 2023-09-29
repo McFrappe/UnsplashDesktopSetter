@@ -25,6 +25,7 @@ namespace UnsplashDesktopSetter
 
         public enum WallpaperStyle : int
         {
+            Fill,
             Tile,
             Center,
             Stretch,
@@ -98,13 +99,18 @@ namespace UnsplashDesktopSetter
             }
             else if (style == WallpaperStyle.Center)
             {
-                key.SetValue(@"WallpaperStyle", 1.ToString());
+                key.SetValue(@"WallpaperStyle", 0.ToString());
                 key.SetValue(@"TileWallpaper", 0.ToString());
             }
             else if (style == WallpaperStyle.Tile)
             {
                 key.SetValue(@"WallpaperStyle", 1.ToString());
                 key.SetValue(@"TileWallpaper", 1.ToString());
+            }
+            else if (style == WallpaperStyle.Fit)
+            {
+                key.SetValue(@"WallpaperStyle", 10.ToString());
+                key.SetValue(@"TileWallpaper", 0.ToString());
             }
         }
 
